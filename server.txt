@@ -1,0 +1,20 @@
+ttaching to case-client-1, case-server-1
+case-server-1  | 172.18.0.1 - - [24/Jan/2024 17:42:28] "GET / HTTP/1.1" 200 -
+case-server-1  | 172.18.0.1 - - [24/Jan/2024 17:42:28] "GET /test.txt HTTP/1.1" 200 -
+case-client-1  | <html>
+case-client-1  | 
+case-client-1  | <head>
+case-client-1  | <title>Hi, there</title>
+case-client-1  | </head>
+case-client-1  | <body>
+case-client-1  | <h1 align="center">Docker compose is magic!</h1>
+case-client-1  | </body>
+case-client-1  | </html>
+case-client-1  | 
+case-client-1  | Hi, serge!
+case-client-1  | 
+case-client-1 exited with code 0
+case-server-1  | 172.18.0.1 - - [24/Jan/2024 17:42:34] "GET / HTTP/1.1" 304 -
+case-server-1  | 172.18.0.1 - - [24/Jan/2024 17:42:37] "GET / HTTP/1.1" 304 -
+
+
