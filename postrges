@@ -1,0 +1,17 @@
+[user@localhost devops-sirius]$ docker run -d -v pg_data:/var/lib/docker/volumes/pg_data/_data -e POSTRES_PASSWORD=admin postgres
+8e552bf21e89476a8a97bfcda1c5a63a3f82a7f47d94dc6325654ee24d35bd84
+[user@localhost devops-sirius]$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[user@localhost devops-sirius]$ docker volume inspect pg_data
+[
+    {
+        "CreatedAt": "2024-01-24T17:42:23+03:00",
+        "Driver": "local",
+        "Labels": {},
+        "Mountpoint": "/var/lib/docker/volumes/pg_data/_data",
+        "Name": "pg_data",
+        "Options": {},
+        "Scope": "local"
+    }
+]
+
