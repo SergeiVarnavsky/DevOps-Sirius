@@ -1,0 +1,8 @@
+docker network create -d macvlan --subnet 10.0.3.0/16 --gateway 10.0.3.0 -o parent=enp0s3 mymacvlan
+
+
+ocker run --rm -it --name com1 --net mymacvlan nicolaka/netshoot /bin/bash
+bade1b009f44:~# ip -br a
+lo               UNKNOWN        127.0.0.1/8 
+eth0@if2         UP             10.0.0.1/16 
+
