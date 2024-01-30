@@ -1,0 +1,2 @@
+https://telemost.yandex.ru/j/47668770752779
+https://github.com/openmeetings/openmeetings-docker/blob/master/Dockerfile
