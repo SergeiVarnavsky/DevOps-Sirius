@@ -1,0 +1,115 @@
+docker network inspect meeting_vlan
+[
+    {
+        "Name": "meeting_vlan",
+        "Id": "4b4d2c5266bce503ce4bb8bdae68d4ef5c295a435adc56ad22364bb254726f55",
+        "Created": "2024-02-01T16:33:51.532319436+03:00",
+        "Scope": "local",
+        "Driver": "macvlan",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "10.0.2.15/24",
+                    "Gateway": "10.0.2.15"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "f5375d6509864f94a8c11152b44c5c0ce97252db41ba7841c4b3e29baa06ff58": {
+                "Name": "meeting-main-1",
+                "EndpointID": "4f8903ed1884da0e1f16400964b010c7526c67d3b0760cf1d660a3ea4e2c06b9",
+                "MacAddress": "02:42:0a:00:02:19",
+                "IPv4Address": "10.0.2.25/24",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {
+            "parent": "enp0s3"
+        },
+        "Labels": {
+            "com.docker.compose.network": "meeting_vlan",
+            "com.docker.compose.project": "meeting",
+            "com.docker.compose.version": "2.11.2"
+        }
+    }
+]
+[root@localhost meeting]# ip -br a
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp0s3           UP             10.0.2.15/24 fe80::a00:27ff:fe20:152/64 
+virbr0           DOWN           192.168.122.1/24 
+docker0          DOWN           172.17.0.1/16 fe80::42:a2ff:fe3d:d349/64 
+veth26d215f@if271 UP             fe80::9cda:8cff:fe3d:e328/64 
+br-4aff5abf4c53  DOWN           172.20.0.1/16 fe80::42:88ff:fe46:fb1/64 
+br-d71ad5eb8da4  UP             172.21.0.1/16 fe80::42:69ff:fe1a:9780/64 
+root@localhost meeting]# sudo ifconfig
+br-4aff5abf4c53: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.20.0.1  netmask 255.255.0.0  broadcast 172.20.255.255
+        inet6 fe80::42:88ff:fe46:fb1  prefixlen 64  scopeid 0x20<link>
+        ether 02:42:88:46:0f:b1  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 43  bytes 6208 (6.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+br-d71ad5eb8da4: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.21.0.1  netmask 255.255.0.0  broadcast 172.21.255.255
+        inet6 fe80::42:69ff:fe1a:9780  prefixlen 64  scopeid 0x20<link>
+        ether 02:42:69:1a:97:80  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 43  bytes 6208 (6.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        inet6 fe80::42:a2ff:fe3d:d349  prefixlen 64  scopeid 0x20<link>
+        ether 02:42:a2:3d:d3:49  txqueuelen 0  (Ethernet)
+        RX packets 378438  bytes 15638678 (14.9 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 700989  bytes 2460566532 (2.2 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+enp0s3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.0.2.15  netmask 255.255.255.0  broadcast 10.0.2.255
+        inet6 fe80::a00:27ff:fe20:152  prefixlen 64  scopeid 0x20<link>
+        ether 08:00:27:20:01:52  txqueuelen 1000  (Ethernet)
+        RX packets 4293370  bytes 6358880993 (5.9 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 631007  bytes 48756706 (46.4 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 11595  bytes 7402384 (7.0 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 11595  bytes 7402384 (7.0 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+veth26d215f: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::9cda:8cff:fe3d:e328  prefixlen 64  scopeid 0x20<link>
+        ether 9e:da:8c:3d:e3:28  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 43  bytes 6208 (6.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+virbr0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+        ether 52:54:00:49:16:17  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
